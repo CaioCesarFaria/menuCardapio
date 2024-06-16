@@ -141,11 +141,21 @@ adressInput.addEventListener("input", function(event){
 // ?? Finalizar pedido
 checkoutBtn.addEventListener("click", function(){
     // !! verifica se o restaurante está aberto
-    // const isOpen = checkRestaurantOpen();
-    // if(!isOpen){
-    //     alert("Estamos fechados no momento! ");
-    //     return;
-    // }
+    const isOpen = checkRestaurantOpen();
+    if(!isOpen){
+        Toastify({
+            text: "Olá! Estamos fechados! ",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+            background: "#ef4444",
+        },
+        }).showToast()
+        return;
+    }
 
     if(cart.length === 0) return;
     if(adressInput.value === ""){
